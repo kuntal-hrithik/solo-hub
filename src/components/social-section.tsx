@@ -5,8 +5,10 @@ export default function Social() {
         <img src="../public/2r6C.gif" alt="" />
       </div>
       <div>
-        <span className="font-semibold text-pink-300">Share Solo Hub</span>
-        <p className="text-sm text-slate-500">to your friends</p>
+        <span className="font-bold text-pink-300">Share Solo Hub</span>
+        <p className="text-sm font-semibold text-black dark:text-white">
+          to your friends
+        </p>
       </div>
       <div className="flex flex-row items-center gap-4">
         <div className="flex cursor-pointer items-center justify-center gap-2 rounded-full bg-blue-500 p-2 px-4 transition-all hover:-translate-y-1 hover:bg-blue-600">

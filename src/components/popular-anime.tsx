@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 
 import {
   Carousel,
@@ -42,6 +43,10 @@ const Popular: React.FC = () => {
               src={el.cover}
               className="absolute inset-0 size-full object-cover"
               alt=""
+              style={{
+                borderBottom: "1px solid rgba(0, 0, 0, 0.5)",
+                filter: "blur(5px)",
+              }}
             />
             <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-r from-background to-transparent p-4">
               <div className="flex h-full w-2/3 flex-col items-start justify-center p-4">
@@ -50,11 +55,16 @@ const Popular: React.FC = () => {
                     el.title
                   : el.title.userPreferred}
                 </h2>
-                <p className="text-sm font-semibold text-gray-600">
+                <p className="text-sm font-bold text-gray-600 dark:text-white">
                   {el.description?.replace(/<[^>]*>/g, "")}
                 </p>
                 <div className="mt-4 flex space-x-2">
-                  <Button variant="default">Watch Now</Button>
+                  <Link to={`/anime-details/${el.id}`}>
+                    <Button variant="default" className="bg-pink-300">
+                      Watch Now
+                    </Button>
+                  </Link>
+
                   <Button variant="outline">Trailer</Button>
                 </div>
               </div>

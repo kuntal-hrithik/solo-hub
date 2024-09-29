@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { Search } from "lucide-react";
+import { Moon, Search, Sun } from "lucide-react";
 
 import { getSearchResults } from "@/api-client";
 import {
@@ -36,13 +36,12 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 flex h-16 w-full border-b bg-background text-black">
       <Link to="/" className="flex items-center gap-x-2">
-        <p className="text-2xl font-bold">
-          SOLO<span className="text-black">-HUb</span>
+        <p className="font-bold dark:text-white sm:text-sm lg:text-2xl">
+          SOLO<span className="text-black dark:text-white">-HUb</span>
         </p>
       </Link>
 
       <div className="flex flex-1 items-center justify-end gap-2">
-        <Button>Logout</Button>
         <Dialog>
           <DialogTrigger>
             <Button
@@ -83,6 +82,19 @@ function Navbar() {
             </ScrollArea>
           </DialogContent>
         </Dialog>
+        <Button>Logout</Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            onClick={() => {
+              document.documentElement.classList.toggle("dark");
+            }}
+          >
+            {document.documentElement.classList.contains("dark") ?
+              <Sun size={20} className="text-black dark:text-white" />
+            : <Moon size={20} />}
+          </Button>
+        </div>
       </div>
     </header>
   );

@@ -3,16 +3,11 @@ import React from "react";
 import "@/index.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createRootRoute, Link } from "@tanstack/react-router";
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 
-import ActionAnime from "@/components/action-anime";
-import AnimeInfo from "@/components/anime-info";
+import { AppContextProvider } from "@/components/context-api/context";
 import FooterAnime from "@/components/footer-anime";
-import GenreAnime from "@/components/genre-anime";
 import Navbar from "@/components/navbar";
-import Popular from "@/components/popular-anime";
-import RomanceAnime from "@/components/romance-anime";
-import Social from "@/components/social-section";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 const TanStackRouterDevtools =
@@ -34,28 +29,18 @@ const queryClient = new QueryClient();
 function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen scroll-smooth antialiased">
-        <Navbar />
-        <Popular />
-        <h1 className="text-2xl font-bold text-slate-500">Action Anime</h1>
-        <ActionAnime />
-        <Social />
-        <RomanceAnime />
-        <GenreAnime />
-        <FooterAnime />
-        <div>
-          <Link
+      <AppContextProvider>
+        <div className="min-h-screen scroll-smooth antialiased">
+          <Navbar />
+          <Outlet />
+          <FooterAnime />
         </div>
-        <TailwindIndicator />
-        <React.Suspense>
-          <TanStackRouterDevtools />
-        </React.Suspense>
-      </div>
-      {/* <div>
-        <Link to={`/anime-info/lazy${id}`}>
-          <AnimeInfo />
-        </Link>
-      </div> */}
+      </AppContextProvider>
+
+      <TailwindIndicator />
+      <React.Suspense>
+        <TanStackRouterDevtools />
+      </React.Suspense>
     </QueryClientProvider>
   );
 }

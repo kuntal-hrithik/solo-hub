@@ -44,12 +44,16 @@ function GenreAnime() {
   return (
     <div>
       <div className="flex p-4">
-        <div className="w-1/4 text-2xl font-bold text-gray-400">Action</div>
-        <div className="w-1/4 text-2xl font-bold text-gray-400">Trending</div>
-        <div className="w-1/4 text-2xl font-bold text-gray-400">
+        <div className="w-1/4 text-2xl font-bold text-gray-400 dark:text-pink-300">
+          Action
+        </div>
+        <div className="w-1/4 text-2xl font-bold text-gray-400 dark:text-pink-300">
+          Trending
+        </div>
+        <div className="w-1/4 text-2xl font-bold text-gray-400 dark:text-pink-300">
           Most Favourite
         </div>
-        <div className="w-1/4 text-2xl font-bold text-gray-400">
+        <div className="w-1/4 text-2xl font-bold text-gray-400 dark:text-pink-300">
           {" "}
           Latest Completed
         </div>
@@ -58,7 +62,7 @@ function GenreAnime() {
         <div className="flex w-1/4 flex-col">
           {data?.results.slice(0, 6).map((el) => (
             <ul key={el.id}>
-              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2">
+              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2 dark:bg-gray-900">
                 <img
                   src={el.image}
                   alt=""
@@ -96,7 +100,7 @@ function GenreAnime() {
         <div className="flex w-1/4 flex-col">
           {trending!.results?.slice(0, 6)?.map((el) => (
             <ul key={el.id}>
-              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2">
+              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2 dark:bg-gray-900">
                 <img
                   src={el.image}
                   alt=""
@@ -134,7 +138,7 @@ function GenreAnime() {
         <div className="flex w-1/4 flex-col">
           {data?.results.slice(0, 6).map((el) => (
             <ul key={el.id}>
-              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2">
+              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2 dark:bg-gray-900">
                 <img
                   src={el.image}
                   alt=""
@@ -172,7 +176,7 @@ function GenreAnime() {
         <div className="flex w-1/4 flex-col">
           {data?.results.slice(0, 6).map((el) => (
             <ul key={el.id}>
-              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2">
+              <li className="mt-4 flex items-center gap-2 border-b-2 border-gray-300 pb-2 dark:bg-gray-900">
                 <img
                   src={el.image}
                   alt=""
