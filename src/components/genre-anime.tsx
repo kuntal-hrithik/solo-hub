@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getTopAiring, getTrendingAnime } from "@/api-client";
 
+import { Button } from "./ui/button";
+
 function GenreAnime() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["genre-anime"],
@@ -88,7 +90,7 @@ function GenreAnime() {
                     <div className="rounded bg-gray-200 px-2 py-1">
                       {el.status}
                     </div>
-                    <div className="rounded bg-yellow-200 px-2 py-1">
+                    <div className="rounded bg-yellow-200 px-2 py-1 dark:text-black">
                       Rating: {el.rating?.toLocaleString()}
                     </div>
                   </div>
@@ -123,10 +125,10 @@ function GenreAnime() {
                       ))}
                   </div>
                   <div className="flex gap-2 text-xs">
-                    <div className="rounded bg-gray-200 px-2 py-1">
+                    <div className="rounded bg-gray-200 px-2 py-1 dark:text-black">
                       {el.status}
                     </div>
-                    <div className="rounded bg-yellow-200 px-2 py-1">
+                    <div className="rounded bg-yellow-200 px-2 py-1 dark:text-black">
                       Rating: {el.rating?.toLocaleString()}
                     </div>
                   </div>
@@ -161,10 +163,10 @@ function GenreAnime() {
                       ))}
                   </div>
                   <div className="flex gap-2 text-xs">
-                    <div className="rounded bg-gray-200 px-2 py-1">
+                    <div className="rounded bg-gray-200 px-2 py-1 dark:text-black">
                       {el.status}
                     </div>
-                    <div className="rounded bg-yellow-200 px-2 py-1">
+                    <div className="rounded bg-yellow-200 px-2 py-1 dark:text-black">
                       Rating: {el.rating?.toLocaleString()}
                     </div>
                   </div>
@@ -199,10 +201,10 @@ function GenreAnime() {
                       ))}
                   </div>
                   <div className="flex gap-2 text-xs">
-                    <div className="rounded bg-gray-200 px-2 py-1">
+                    <div className="rounded bg-gray-200 px-2 py-1 dark:text-black">
                       {el.status}
                     </div>
-                    <div className="rounded bg-yellow-200 px-2 py-1">
+                    <div className="rounded bg-yellow-200 px-2 py-1 dark:text-black">
                       Rating: {el.rating?.toLocaleString()}
                     </div>
                   </div>
@@ -213,10 +215,21 @@ function GenreAnime() {
         </div>
       </div>
       <div className="flex pl-4">
-        <div className="w-1/4 cursor-pointer text-xl">View More...</div>
-        <div className="w-1/4 cursor-pointer text-xl">View More...</div>
-        <div className="w-1/4 cursor-pointer text-xl">View More...</div>
-        <div className="w-1/4 cursor-pointer text-xl">View More...</div>
+        <div className="w-1/4 cursor-pointer text-xl">
+          <Button>View More..</Button>
+        </div>
+        <div className="w-1/4 cursor-pointer text-xl">
+          {" "}
+          <Button>View More..</Button>
+        </div>
+        <div className="w-1/4 cursor-pointer text-xl">
+          {" "}
+          <Button>View More..</Button>.
+        </div>
+        <div className="w-1/4 cursor-pointer text-xl">
+          {" "}
+          <Button>View More..</Button>
+        </div>
       </div>
     </div>
   );

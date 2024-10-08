@@ -34,23 +34,25 @@ function Navbar() {
     );
   }
   return (
-    <header className="sticky top-0 z-50 flex h-16 w-full border-b bg-background text-black">
+    <header className="sticky top-0 z-50 flex h-16 w-full items-center border-b bg-background px-4 text-black dark:bg-gray-900">
       <Link to="/" className="flex items-center gap-x-2">
-        <p className="font-bold dark:text-white sm:text-sm lg:text-2xl">
+        <p className="text-sm font-bold dark:text-white md:text-xl lg:text-2xl">
           SOLO<span className="text-black dark:text-white">-HUb</span>
         </p>
       </Link>
 
+      {/* Flex spacer */}
       <div className="flex flex-1 items-center justify-end gap-2">
+        {/* Search Dialog */}
         <Dialog>
           <DialogTrigger>
             <Button
               size="sm"
               variant="outline"
-              className="w-48 justify-start border-black bg-background text-muted-foreground"
+              className="w-32 justify-start border-black bg-background text-muted-foreground dark:bg-gray-800 md:w-48"
             >
               <Search size={16} className="mr-2" />
-              ...Search Anime
+              <span className="hidden sm:inline">Search Anime</span>
             </Button>
           </DialogTrigger>
           <DialogContent className="h-64 w-full overflow-hidden">
@@ -68,8 +70,12 @@ function Navbar() {
             <ScrollArea>
               <div className="flex flex-col">
                 {data?.results.map((anime) => (
-                  <div className="flex flex-row gap-2 rounded border">
-                    <img className="size-14" src={anime.image} alt="" />
+                  <div className="flex flex-row gap-2 rounded border p-2">
+                    <img
+                      className="size-14 object-cover"
+                      src={anime.image}
+                      alt=""
+                    />
                     <h1 className="flex items-center justify-center font-bold">
                       {typeof anime.title === "string" ?
                         anime.title
@@ -77,24 +83,28 @@ function Navbar() {
                     </h1>
                   </div>
                 ))}
-                ;
               </div>
             </ScrollArea>
           </DialogContent>
         </Dialog>
-        <Button>Logout</Button>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            onClick={() => {
-              document.documentElement.classList.toggle("dark");
-            }}
-          >
-            {document.documentElement.classList.contains("dark") ?
-              <Sun size={20} className="text-black dark:text-white" />
-            : <Moon size={20} />}
-          </Button>
-        </div>
+
+        {/* Logout Button */}
+        <Button size="sm" className="hidden sm:inline">
+          Logout
+        </Button>
+
+        {/* Theme Toggle Button */}
+        <Button
+          variant="outline"
+          className="p-2"
+          onClick={() => {
+            document.documentElement.classList.toggle("dark");
+          }}
+        >
+          {document.documentElement.classList.contains("dark") ?
+            <Sun size={20} className="text-black dark:text-white" />
+          : <Moon size={20} />}
+        </Button>
       </div>
     </header>
   );

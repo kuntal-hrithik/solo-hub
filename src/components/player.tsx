@@ -1,17 +1,19 @@
 import { useEffect, useRef } from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import Artplayer from "artplayer";
 import Hls from "hls.js";
 
 import { getEpisodeSources } from "@/api-client";
 
 import { useAppContext } from "./context-api/context";
+import { Button } from "./ui/button";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 export default function Player() {
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { id } = useParams({ from: "/player/$id" });
   const { episodeList } = useAppContext();
   const { data, isLoading, error } = useQuery({
@@ -20,6 +22,9 @@ export default function Player() {
   });
 
   console.log({ episodeList });
+  // function handleEpisodeClick(data.sources) {
+  //   console.log("Episode clicked", episode);
+  // }
 
   console.log(data?.sources[3].url);
   useEffect(() => {
@@ -156,37 +161,51 @@ export default function Player() {
     );
   }
 
+  function handleEpisodeClick(episodeId: string) {
+    navigate({ to: `/player/${episodeId}` });
+  }
+
   // Render the player container
   return (
     <div className="flex h-screen w-full">
-      <div className="relative h-full w-4/5 bg-blue-500">
+      <div className="h-full w-1/5 overflow-y-auto p-10">
+        <h2 className="p-4 text-lg font-bold">Episodes</h2>
+        <ScrollArea className="h-[85%]">
+          <ul>
+            {episodeList &&
+              episodeList.map((episode) => (
+                <li
+                  key={episode.id}
+                  onClick={() => {
+                    handleEpisodeClick(episode.id);
+                  }}
+                  className="cursor-pointer rounded-lg border-b border-gray-200 p-4 text-black hover:bg-gray-200 hover:text-black"
+                >
+                  <div className="flex items-center">
+                    <img
+                      src={episode.image}
+                      alt={episode.title}
+                      className="mr-3 size-16 object-cover"
+                    />
+                    <div>
+                      <p className="font-semibold dark:text-white">
+                        Episode {episode.number}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-white">
+                        {episode.title}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+          </ul>
+          <ScrollBar orientation="vertical" />
+        </ScrollArea>
+      </div>
+      <div className="relative mt-4 h-[90%] w-4/5">
         <div className="absolute inset-16 bg-black" ref={ref}>
           .
         </div>
-      </div>
-      <div className="h-full w-1/5 overflow-y-auto bg-gray-100">
-        <h2 className="p-4 text-lg font-bold">Episodes</h2>
-        <ul>
-          {episodeList &&
-            episodeList.map((episode) => (
-              <li
-                key={episode.id}
-                className="cursor-pointer border-b border-gray-200 p-4 text-black hover:bg-gray-200"
-              >
-                <div className="flex items-center">
-                  <img
-                    src={episode.image}
-                    alt={episode.title}
-                    className="mr-3 size-16 object-cover"
-                  />
-                  <div>
-                    <p className="font-semibold">Episode {episode.number}</p>
-                    <p className="text-sm text-gray-600">{episode.title}</p>
-                  </div>
-                </div>
-              </li>
-            ))}
-        </ul>
       </div>
     </div>
   );

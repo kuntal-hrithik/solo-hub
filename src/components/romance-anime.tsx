@@ -27,55 +27,58 @@ function RomanceAnime() {
     );
   }
   return (
-    <ScrollArea className="mt-10 h-80">
-      <div className="flex gap-4 pb-4">
-        {data?.results.map((el) => (
-          <HoverCard key={el.id}>
-            <HoverCardTrigger asChild>
-              <Link to={`/anime-details/${el.id}`}>
-                <Card className="relative cursor-pointer transition-transform hover:translate-x-1 hover:translate-y-1 hover:-rotate-3 hover:scale-105">
-                  <div className="h-56 w-40 overflow-hidden">
-                    <img
-                      src={el.image}
-                      className="size-full object-cover"
-                      alt={
-                        typeof el.title === "string" ?
+    <>
+      <h1 className="m-5 text-2xl font-bold text-gray-400">Romance Anime</h1>
+      <ScrollArea className="h-80">
+        <div className="flex gap-4 pb-4">
+          {data?.results.map((el) => (
+            <HoverCard key={el.id}>
+              <HoverCardTrigger asChild>
+                <Link to={`/anime-details/${el.id}`}>
+                  <Card className="relative cursor-pointer transition-transform hover:translate-x-1 hover:translate-y-1 hover:-rotate-3 hover:scale-105">
+                    <div className="h-56 w-40 overflow-hidden">
+                      <img
+                        src={el.image}
+                        className="size-full object-cover"
+                        alt={
+                          typeof el.title === "string" ?
+                            el.title
+                          : el.title.english || el.title.romaji || ""
+                        }
+                      />
+                    </div>
+                    <CardFooter className="h-14 overflow-hidden">
+                      <p
+                        className="truncate text-sm font-bold"
+                        style={{ maxWidth: "100px" }}
+                      >
+                        {typeof el.title === "string" ?
                           el.title
-                        : el.title.english || el.title.romaji || ""
-                      }
-                    />
+                        : el.title.english || el.title.romaji || ""}
+                      </p>
+                    </CardFooter>
+                  </Card>
+                </Link>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-64" sideOffset={0}>
+                <div className="bg-opacity-0/0 absolute inset-0 flex flex-col items-center justify-center rounded-lg">
+                  <div className="font-bold">
+                    {typeof el.title === "string" ?
+                      el.title
+                    : el.title.english || el.title.romaji || ""}
                   </div>
-                  <CardFooter className="h-14 overflow-hidden">
-                    <p
-                      className="truncate text-sm font-bold"
-                      style={{ maxWidth: "100px" }}
-                    >
-                      {typeof el.title === "string" ?
-                        el.title
-                      : el.title.english || el.title.romaji || ""}
-                    </p>
-                  </CardFooter>
-                </Card>
-              </Link>
-            </HoverCardTrigger>
-            <HoverCardContent className="w-64" sideOffset={0}>
-              <div className="bg-opacity-0/0 absolute inset-0 flex flex-col items-center justify-center rounded-lg">
-                <div className="font-bold">
-                  {typeof el.title === "string" ?
-                    el.title
-                  : el.title.english || el.title.romaji || ""}
+                  <div className="flex list-none gap-2">
+                    <li>{el.rating}</li>
+                    <li>{el.status}</li>
+                  </div>
                 </div>
-                <div className="flex list-none gap-2">
-                  <li>{el.rating}</li>
-                  <li>{el.status}</li>
-                </div>
-              </div>
-            </HoverCardContent>
-          </HoverCard>
-        ))}
-      </div>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+              </HoverCardContent>
+            </HoverCard>
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+    </>
   );
 }
 

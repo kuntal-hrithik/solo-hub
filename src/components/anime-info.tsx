@@ -130,30 +130,32 @@ export default function AnimeInfo() {
         <ScrollArea>
           <div className="flex gap-4 overflow-x-auto">
             {data?.episodes?.map((el) => (
-              <Card key={el.id} className="cursor-pointer">
-                <div className="h-56 w-40 overflow-hidden">
-                  <img
-                    src={el.image}
-                    alt={el.title}
-                    className="size-full object-cover"
-                  />
-                </div>
-                <CardFooter className="">
-                  <p
-                    className="truncate pt-2 text-sm font-bold"
-                    style={{ maxWidth: "100px" }}
-                  >
-                    {typeof el.title === "string" ?
-                      el.title
-                    : (el.title &&
-                        ("english" in el.title ? el.title
-                        : "romaji" in el.title ? el.title
-                        : "")) ||
-                      ""
-                    }
-                  </p>
-                </CardFooter>
-              </Card>
+              <Link to={`/player/${el.id}`}>
+                <Card key={el.id} className="cursor-pointer">
+                  <div className="h-56 w-40 overflow-hidden">
+                    <img
+                      src={el.image}
+                      alt={el.title}
+                      className="size-full object-cover"
+                    />
+                  </div>
+                  <CardFooter className="">
+                    <p
+                      className="truncate pt-2 text-sm font-bold"
+                      style={{ maxWidth: "100px" }}
+                    >
+                      {typeof el.title === "string" ?
+                        el.title
+                      : (el.title &&
+                          ("english" in el.title ? el.title
+                          : "romaji" in el.title ? el.title
+                          : "")) ||
+                        ""
+                      }
+                    </p>
+                  </CardFooter>
+                </Card>
+              </Link>
             ))}
           </div>
           <ScrollBar orientation="horizontal" />

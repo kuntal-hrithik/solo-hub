@@ -27,7 +27,7 @@ export default function HaremAnime() {
       <h1 className="mt-16 p-4 text-2xl font-bold dark:text-pink-300">
         Recommended For you
       </h1>
-      <div className="grid grid-cols-8 grid-rows-4 gap-4 p-4">
+      <div className="grid grid-cols-8 grid-rows-3 gap-4 p-4">
         {data?.results.map((el) => (
           <Card key={el.id} className="w-full cursor-pointer">
             <div className="aspect-[2/3] overflow-hidden">
